@@ -612,7 +612,7 @@ sd_connect_pins_to_constant -sd_name ${sd_name} -pin_names {PF_SOC_MSS:MSS_RESET
 #-------------------------------------------------------------------------------
 # Add connections for selected DDR configuration
 #-------------------------------------------------------------------------------
-source script_support/components/MSS_DDR/$mss_ddr/MSS_DDR_IN_RISCV_SUBSYSTEM.tcl
+source [file join $INITIAL_DIRECTORY "sources" "MSS" "components" "DRAM" $mss_ddr "MSS_DDR_IN_RISCV_SUBSYSTEM.tcl"]
 #-------------------------------------------------------------------------------
 
 # Mark pins unused
