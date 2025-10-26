@@ -28,6 +28,7 @@ safe_source [file join $INITIAL_DIRECTORY "sources" "MSS" "components" "clocks_a
 safe_source [file join $INITIAL_DIRECTORY "sources" "MSS" "components" "clocks_and_resets" "CLOCKS_AND_RESETS.tcl"]
 safe_source [file join $INITIAL_DIRECTORY "sources" "MSS" "components" "MIV_IHC_C0.tcl"]
 safe_source [file join $INITIAL_DIRECTORY "sources" "MSS" "components" "BVF_RISCV_SUBSYSTEM.tcl"]
+safe_source [file join $INITIAL_DIRECTORY "sources" "MSS" "components" "ADAPTER.tcl"]
 safe_source [file join $INITIAL_DIRECTORY "sources" "MSS" "components" "BVF_GATEWARE.tcl"]
 
 #

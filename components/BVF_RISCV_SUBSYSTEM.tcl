@@ -50,7 +50,6 @@ sd_create_scalar_port -sd_name ${sd_name} -port_name {I2C_1_SDA} -port_direction
 sd_create_scalar_port -sd_name ${sd_name} -port_name {FIC_3_PCLK} -port_direction {IN}
 
 sd_create_scalar_port -sd_name ${sd_name} -port_name {USER_BUTTON} -port_direction {IN} 
-sd_create_scalar_port -sd_name ${sd_name} -port_name {SD_CARD_CS} -port_direction {OUT} 
 sd_create_scalar_port -sd_name ${sd_name} -port_name {SD_DET} -port_direction {IN} 
 
 
@@ -68,10 +67,6 @@ sd_create_bus_port -sd_name ${sd_name} -port_name {GPIO_2_F2M} -port_direction {
 #-------------------------------------------------------------------------------
 # Analog to Digital Converter pins (for cape analog inputs)
 #-------------------------------------------------------------------------------
-sd_create_scalar_port -sd_name ${sd_name} -port_name {ADC_CSn} -port_direction {OUT}
-sd_create_scalar_port -sd_name ${sd_name} -port_name {ADC_SCK} -port_direction {OUT}
-sd_create_scalar_port -sd_name ${sd_name} -port_name {ADC_MOSI} -port_direction {INOUT}
-sd_create_scalar_port -sd_name ${sd_name} -port_name {ADC_MISO} -port_direction {INOUT}
 sd_create_scalar_port -sd_name ${sd_name} -port_name {ADC_IRQn} -port_direction {IN}
 
 
@@ -201,17 +196,7 @@ sd_connect_pins -sd_name ${sd_name} -pin_names {"PF_SOC_MSS:I2C_0_SDA_OE_M2F" "I
 
 #-------------------------------------------------------------------------------
 sd_connect_pins -sd_name ${sd_name} -pin_names {"PF_SOC_MSS:GPIO_0_13_IN" "USER_BUTTON"} 
-sd_connect_pins -sd_name ${sd_name} -pin_names {"PF_SOC_MSS:GPIO_0_12_OUT" "SD_CARD_CS"} 
 sd_connect_pins -sd_name ${sd_name} -pin_names {"PF_SOC_MSS:GPIO_2_F2M_31" "SD_DET"} 
-
-#-------------------------------------------------------------------------------
-# Connect ADC.
-#-------------------------------------------------------------------------------
-sd_connect_pins -sd_name ${sd_name} -pin_names {"PF_SOC_MSS:QSPI_CLK" "ADC_SCK" }
-sd_connect_pins -sd_name ${sd_name} -pin_names {"PF_SOC_MSS:QSPI_SS0" "ADC_CSn" }
-sd_connect_pins -sd_name ${sd_name} -pin_names {"PF_SOC_MSS:QSPI_DATA0" "ADC_MOSI" }
-sd_connect_pins -sd_name ${sd_name} -pin_names {"PF_SOC_MSS:QSPI_DATA1" "ADC_MISO" }
-sd_connect_pins -sd_name ${sd_name} -pin_names {"ADC_IRQn" "PF_SOC_MSS:GPIO_1_20_IN" }
 
 #-------------------------------------------------------------------------------
 sd_connect_pins -sd_name ${sd_name} -pin_names {"REFCLK" "PF_SOC_MSS:REFCLK" }
@@ -573,34 +558,21 @@ sd_connect_pins -sd_name ${sd_name} -pin_names {"CAN_1_RXBUS" "PF_SOC_MSS:CAN_1_
 sd_mark_pins_unused -sd_name ${sd_name} -pin_names {PF_SOC_MSS:SPI_0_SS1_OE_M2F} 
 sd_mark_pins_unused -sd_name ${sd_name} -pin_names {PF_SOC_MSS:SPI_0_CLK_OE_M2F} 
 sd_mark_pins_unused -sd_name ${sd_name} -pin_names {PF_SOC_MSS:SPI_0_DO_OE_M2F} 
-sd_mark_pins_unused -sd_name ${sd_name} -pin_names {PF_SOC_MSS:SPI_1_CLK_M2F} 
-sd_mark_pins_unused -sd_name ${sd_name} -pin_names {PF_SOC_MSS:SPI_1_DO_M2F} 
-sd_mark_pins_unused -sd_name ${sd_name} -pin_names {PF_SOC_MSS:SPI_1_SS1_M2F} 
-sd_connect_pins_to_constant -sd_name ${sd_name} -pin_names {PF_SOC_MSS:SPI_1_SS_F2M} -value {GND} 
 sd_connect_pins_to_constant -sd_name ${sd_name} -pin_names {PF_SOC_MSS:SPI_0_CLK_F2M} -value {GND} 
 sd_connect_pins_to_constant -sd_name ${sd_name} -pin_names {PF_SOC_MSS:SPI_0_SS_F2M} -value {GND} 
-sd_connect_pins_to_constant -sd_name ${sd_name} -pin_names {PF_SOC_MSS:SPI_1_CLK_F2M} -value {GND} 
 
 sd_connect_pin_to_port -sd_name {BVF_RISCV_SUBSYSTEM} -pin_name {PF_SOC_MSS:SPI_0_DI_F2M} -port_name {} 
-sd_connect_pin_to_port -sd_name {BVF_RISCV_SUBSYSTEM} -pin_name {PF_SOC_MSS:SPI_1_DI_F2M} -port_name {} 
 sd_connect_pin_to_port -sd_name {BVF_RISCV_SUBSYSTEM} -pin_name {PF_SOC_MSS:SPI_0_CLK_M2F} -port_name {} 
 sd_connect_pin_to_port -sd_name {BVF_RISCV_SUBSYSTEM} -pin_name {PF_SOC_MSS:SPI_0_DO_M2F} -port_name {} 
 sd_connect_pin_to_port -sd_name {BVF_RISCV_SUBSYSTEM} -pin_name {PF_SOC_MSS:SPI_0_SS1_M2F} -port_name {} 
 
 sd_rename_port -sd_name {BVF_RISCV_SUBSYSTEM} -current_port_name {SPI_0_DI_F2M} -new_port_name {SPI_0_DI} 
-sd_rename_port -sd_name {BVF_RISCV_SUBSYSTEM} -current_port_name {SPI_1_DI_F2M} -new_port_name {SPI_1_DI} 
 
 sd_rename_port -sd_name {BVF_RISCV_SUBSYSTEM} -current_port_name {SPI_0_CLK_M2F} -new_port_name {SPI_0_CLK} 
 sd_rename_port -sd_name {BVF_RISCV_SUBSYSTEM} -current_port_name {SPI_0_DO_M2F} -new_port_name {SPI_0_DO} 
 sd_rename_port -sd_name {BVF_RISCV_SUBSYSTEM} -current_port_name {SPI_0_SS1_M2F} -new_port_name {SPI_0_SS1}
 
-sd_connect_pin_to_port -sd_name {BVF_RISCV_SUBSYSTEM} -pin_name {PF_SOC_MSS:SPI_1_SS1_M2F} -port_name {} 
-sd_connect_pin_to_port -sd_name {BVF_RISCV_SUBSYSTEM} -pin_name {PF_SOC_MSS:SPI_1_CLK_M2F} -port_name {} 
-sd_connect_pin_to_port -sd_name {BVF_RISCV_SUBSYSTEM} -pin_name {PF_SOC_MSS:SPI_1_DO_M2F} -port_name {} 
 
-sd_rename_port -sd_name {BVF_RISCV_SUBSYSTEM} -current_port_name {SPI_1_SS1_M2F} -new_port_name {SPI_1_SS1} 
-sd_rename_port -sd_name {BVF_RISCV_SUBSYSTEM} -current_port_name {SPI_1_DO_M2F} -new_port_name {SPI_1_DO} 
-sd_rename_port -sd_name {BVF_RISCV_SUBSYSTEM} -current_port_name {SPI_1_CLK_M2F} -new_port_name {SPI_1_CLK} 
 
 #-------------------------------------------------------------------------------
 # Temporary connections to allow running through complete flow.
@@ -618,11 +590,3 @@ source [file join $INITIAL_DIRECTORY "sources" "MSS" "components" "DRAM" $mss_dd
 # Mark pins unused
 sd_mark_pins_unused -sd_name ${sd_name} -pin_names {PF_SOC_MSS:PLL_CPU_LOCK_M2F}
 sd_mark_pins_unused -sd_name ${sd_name} -pin_names {PF_SOC_MSS:PLL_SGMII_LOCK_M2F}
-
-# Re-enable auto promotion of pins of type 'pad'
-auto_promote_pad_pins -promote_all 1
-# Save the smartDesign
-save_smartdesign -sd_name ${sd_name}
-# Generate SmartDesign BVF_RISCV_SUBSYSTEM
-generate_component -component_name ${sd_name}
-
