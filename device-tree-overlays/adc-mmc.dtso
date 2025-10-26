@@ -6,11 +6,11 @@
 
 &{/chosen} {
 	overlays {
-		QSPI-DRIVES-ADC = "GATEWARE_GIT_VERSION";
+		SPI-1-DRIVES-ADC = "GATEWARE_GIT_VERSION";
 	};
 };
 
-&qspi {
+&spi1 {
 	#address-cells = <1>;
 	#size-cells = <0>;
 
