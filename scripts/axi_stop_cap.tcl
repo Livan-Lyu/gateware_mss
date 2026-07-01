@@ -51,11 +51,11 @@ if {[llength $drcFiles]} {
     foreach pinInfo $unconnectedPinsBySD {
         lassign $pinInfo sd_name pin
 
-        if {[regexp {(.+):AXI4mslave(\d+)} $pin match baseName slaveNum]} {
-            set slaveName "${baseName}:SLAVE${slaveNum}"
+        if {[regexp {(.+):AXI4mtarget(\d+)} $pin match baseName targetNum]} {
+            set targetName "${baseName}:TARGET${targetNum}"
 
             foreach basePin $basePins {
-                set fullPinName "${slaveName}_${basePin}"
+                set fullPinName "${targetName}_${basePin}"
 
                 sd_connect_pins_to_constant -sd_name $sd_name -pin_names $fullPinName -value {GND}
                 puts "Connected: $fullPinName in $sd_name"
