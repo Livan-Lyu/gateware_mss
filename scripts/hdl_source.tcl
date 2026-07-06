@@ -34,6 +34,14 @@ foreach file [glob -nocomplain -type f [file join $current_dir "script_support" 
     import_files -convert_EDN_to_HDL 0 -library {work} -hdl_source $file
 }
 
+foreach file [glob -nocomplain -type f [file join $current_dir "script_support" "components" "MIPI_CSI" $mipi_csi_option "HDL" "*.v"]] {
+    import_files -convert_EDN_to_HDL 0 -library {work} -hdl_source $file
+}
+
+foreach file [glob -nocomplain -type f [file join $current_dir "script_support" "components" "SYZYGY" $syzygy_option "HDL" "*.v"]] {
+    import_files -convert_EDN_to_HDL 0 -library {work} -hdl_source $file
+}
+
 build_design_hierarchy 
 
 create_hdl_core -file [file join $project_dir "hdl" "apb_arbiter.v"] -module {APB_ARBITER} -library {work} -package {} 
