@@ -223,8 +223,9 @@ sd_connect_pin_to_port -sd_name ${sd_name} -pin_name {BVF_RISCV_SUBSYSTEM:VIO_EN
 # sd_mark_pins_unused -sd_name ${sd_name} -pin_names {BVF_RISCV_SUBSYSTEM:FIC_1_AXI4_TARGET}
 sd_mark_pins_unused -sd_name ${sd_name} -pin_names {BVF_RISCV_SUBSYSTEM:FIC_2_AXI4_TARGET}
 
-sd_mark_pins_unused -sd_name ${sd_name} -pin_names {BVF_RISCV_SUBSYSTEM:HSI_APB_MTARGET}
-sd_mark_pins_unused -sd_name ${sd_name} -pin_names {BVF_RISCV_SUBSYSTEM:CSI_APB_MTARGET}
+# Disabled: FIC3 slots 2, 4 not enabled for BGS — ports don't exist
+#sd_mark_pins_unused -sd_name ${sd_name} -pin_names {BVF_RISCV_SUBSYSTEM:HSI_APB_MTARGET}
+#sd_mark_pins_unused -sd_name ${sd_name} -pin_names {BVF_RISCV_SUBSYSTEM:CSI_APB_MTARGET}
 
 sd_mark_pins_unused -sd_name ${sd_name} -pin_names {BVF_RISCV_SUBSYSTEM:MAC_1_MDO_M2F} 
 sd_mark_pins_unused -sd_name ${sd_name} -pin_names {BVF_RISCV_SUBSYSTEM:MAC_1_MDO_OE_M2F} 
@@ -263,8 +264,8 @@ sd_mark_pins_unused -sd_name ${sd_name} -pin_names {BVF_RISCV_SUBSYSTEM:CAN_1_TX
 
 source [file join $INITIAL_DIRECTORY "sources" "MSS" "components" "DRAM" $mss_ddr "MSS_DDR_IN_GATEWARE.tcl"]
 source script_support/components/SYZYGY/$syzygy_option/ADD_HIGH_SPEED_CONNECTOR.tcl 
-source script_support/components/M2/$m2_option/ADD_M2_INTERFACE.tcl
 source script_support/components/CAPE/$cape_option/ADD_CAPE.tcl
+source script_support/components/M2/$m2_option/ADD_M2_INTERFACE.tcl
 source script_support/components/MIPI_CSI/$mipi_csi_option/ADD_MIPI_CSI_INTERFACE.tcl
 source script_support/components/APU/$apu_option/ADD_APU.tcl 
 
