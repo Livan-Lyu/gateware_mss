@@ -319,11 +319,9 @@ sd_connect_pin_to_port -sd_name ${sd_name} -pin_name {PF_SOC_MSS:FIC_1_AXI4_TARG
 sd_connect_pin_to_port -sd_name ${sd_name} -pin_name {PF_SOC_MSS:FIC_0_AXI4_TARGET} -port_name {} 
 
 sd_connect_pin_to_port -sd_name ${sd_name} -pin_name {FIC3_INITIATOR:APBmslave1} -port_name {}
-# Disabled: FIC3 slots 2, 4 not needed for BGS (SYZYGY=NONE, MIPI_CSI=NONE)
-#sd_connect_pin_to_port -sd_name ${sd_name} -pin_name {FIC3_INITIATOR:APBmslave2} -port_name {}
-#sd_connect_pin_to_port -sd_name ${sd_name} -pin_name {FIC3_INITIATOR:APBmslave4} -port_name {}
-# Disabled: APBmslave16 not in CoreAPB3 slot range (0–15 only)
-#sd_connect_pin_to_port -sd_name ${sd_name} -pin_name {FIC3_INITIATOR:APBmslave16} -port_name {}
+sd_connect_pin_to_port -sd_name ${sd_name} -pin_name {FIC3_INITIATOR:APBmslave2} -port_name {}
+sd_connect_pin_to_port -sd_name ${sd_name} -pin_name {FIC3_INITIATOR:APBmslave4} -port_name {}
+sd_connect_pin_to_port -sd_name ${sd_name} -pin_name {FIC3_INITIATOR:APBmslave16} -port_name {}
 sd_connect_pin_to_port -sd_name ${sd_name} -pin_name {PF_SOC_MSS:FIC_0_ACLK} -port_name {} 
 sd_connect_pin_to_port -sd_name ${sd_name} -pin_name {PF_SOC_MSS:FIC_1_ACLK} -port_name {} 
 sd_connect_pin_to_port -sd_name ${sd_name} -pin_name {PF_SOC_MSS:FIC_2_ACLK} -port_name {} 
@@ -537,11 +535,9 @@ sd_connect_pin_to_port -sd_name ${sd_name} -pin_name {PF_SOC_MSS:FIC_1_AXI4_INIT
 sd_mark_pins_unused -sd_name ${sd_name} -pin_names {PF_SOC_MSS:MMUART_1_TXD_OE_M2F} 
 
 sd_rename_port -sd_name ${sd_name} -current_port_name {APBmslave1} -new_port_name {CAPE_APB_MTARGET}
-# Disabled: FIC3 slots 2, 4 not needed for BGS (SYZYGY=NONE, MIPI_CSI=NONE)
-#sd_rename_port -sd_name ${sd_name} -current_port_name {APBmslave2} -new_port_name {CSI_APB_MTARGET}
-#sd_rename_port -sd_name ${sd_name} -current_port_name {APBmslave4} -new_port_name {HSI_APB_MTARGET}
-# Disabled: APBmslave16 not in CoreAPB3 slot range (0–15 only)
-#sd_rename_port -sd_name ${sd_name} -current_port_name {APBmslave16} -new_port_name {M2_APB_MTARGET}
+sd_rename_port -sd_name ${sd_name} -current_port_name {APBmslave2} -new_port_name {CSI_APB_MTARGET}
+sd_rename_port -sd_name ${sd_name} -current_port_name {APBmslave4} -new_port_name {HSI_APB_MTARGET}
+sd_rename_port -sd_name ${sd_name} -current_port_name {APBmslave16} -new_port_name {M2_APB_MTARGET}
 
 #-------------------------------------------------------------------------------
 sd_connect_pins -sd_name ${sd_name} -pin_names {"CAN_0_TXBUS" "PF_SOC_MSS:CAN_0_TXBUS_M2F"} 
