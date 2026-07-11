@@ -16,10 +16,10 @@ sd_create_scalar_port -sd_name ${sd_name} -port_name {USB_DIR} -port_direction {
 sd_create_scalar_port -sd_name ${sd_name} -port_name {USB_NXT} -port_direction {IN} -port_is_pad {1}
 sd_create_scalar_port -sd_name ${sd_name} -port_name {USB_STP} -port_direction {OUT} -port_is_pad {1}
 sd_create_bus_port -sd_name ${sd_name} -port_name {USB_DATA} -port_direction {INOUT} -port_range {[7:0]} -port_is_pad {1}
-sd_create_pin_slices -sd_name ${sd_name} -pin_name {USB_DATA} -pin_slices {[7] [6] [5] [4] [3] [2] [1] [0]}
+sd_create_pin_slices -sd_name ${sd_name} -pin_name {USB_DATA} -pin_slices {[7:7] [6:6] [5:5] [4:4] [3:3] [2:2] [1:1] [0:0]}
 sd_create_scalar_port -sd_name ${sd_name} -port_name {USB_OCn} -port_direction {IN} 
 sd_create_bus_port -sd_name ${sd_name} -port_name {EMMC_DATA} -port_direction {INOUT} -port_range {[7:0]} -port_is_pad {1}
-sd_create_pin_slices -sd_name ${sd_name} -pin_name {EMMC_DATA} -pin_slices {[7] [6] [5] [4] [3] [2] [1] [0]}
+sd_create_pin_slices -sd_name ${sd_name} -pin_name {EMMC_DATA} -pin_slices {[7:7] [6:6] [5:5] [4:4] [3:3] [2:2] [1:1] [0:0]}
 sd_create_scalar_port -sd_name ${sd_name} -port_name {EMMC_CLK} -port_direction {OUT}
 sd_create_scalar_port -sd_name ${sd_name} -port_name {EMMC_CMD} -port_direction {INOUT}
 sd_create_scalar_port -sd_name ${sd_name} -port_name {EMMC_RSTN} -port_direction {OUT}
